@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    Rigidbody2D rigid2D;
+    public float tempMoveSpeed = 5.0f;
+
+    private void Start()
     {
-        
+        rigid2D = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public enum Direction
     {
-        
+        Left = -1,
+        Right = 1
+    }
+
+    void Move(Direction direction)
+    {
+        rigid2D.MovePosition(Vector2.right * (int)direction * tempMoveSpeed * Time.deltaTime);
     }
 }
