@@ -18,8 +18,8 @@ public class PlayerMovement : MonoBehaviour
         Right = 1
     }
 
-    void Move(Direction direction)
+    public void Move(Direction direction)
     {
-        rigid2D.MovePosition(Vector2.right * (int)direction * tempMoveSpeed * Time.deltaTime);
+        rigid2D.MovePosition(rigid2D.position + Vector2.right * (int)direction * 5 * Time.deltaTime);
     }
 }
