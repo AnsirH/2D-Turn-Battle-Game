@@ -4,32 +4,27 @@ using UnityEngine;
 
 namespace State
 {
-    public class PlayerMoveState : StateBase<PlayerController>
+    public class PlayerFallState : StateBase<PlayerController>
     {
         public override void Enter(PlayerController entity)
         {
-            entity.Anim.SetBool("IsMove", true);
+            entity.Anim.SetBool("IsFalling", true);
         }
 
         public override void Exit(PlayerController entity)
         {
-            entity.Anim.SetBool("IsMove", false);
+            entity.Anim.SetBool("IsFalling", false);
         }
 
         public override void Operation_FixedUpdate(PlayerController entity)
         {
-            entity.Movement.MoveHorizontal(entity.InputGetter.MoveInput.x);
         }
 
         public override void Operation_Update(PlayerController entity)
         {
-            if (!entity.InputGetter.IsMove)
+            if (entity.Movement.Rigid2D.velocity.y < 0.0f && entity.Movement.IsGrounded)
             {
                 entity.StateMachine.ChangeState(PlayerStateMachine.PlayerStates.Idle);
-            }
-            if (entity.InputGetter.IsJump)
-            {
-                entity.StateMachine.ChangeState(PlayerStateMachine.PlayerStates.Jump);
             }
         }
     }

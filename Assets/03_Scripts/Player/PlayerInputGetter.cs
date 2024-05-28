@@ -16,14 +16,22 @@ public class PlayerInputGetter : MonoBehaviour
 
     public void DisableJump() { isJump = false; }
 
-    void OnMove(InputValue value)
+    public void Move(InputAction.CallbackContext context)
     {
-        moveInput = value.Get<Vector2>();
-        Debug.Log($"{moveInput.x} {moveInput.y}");
+        moveInput = context.ReadValue<Vector2>();
     }
 
-    void OnJump()
+    public void Jump(InputAction.CallbackContext context)
     {
-        isJump = true;
+        if (context.action.WasPressedThisFrame())
+        {
+            isJump = true;
+        }
+
+        if (context.action.WasReleasedThisFrame())
+        {
+            isJump = false;
+        }
+
     }
 }

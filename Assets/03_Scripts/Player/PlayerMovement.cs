@@ -5,14 +5,17 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D rigid2D;
+    CapsuleCollider2D coll2D;
     public float tempMoveSpeed = 5.0f;
     public float tempJumpPower = 5.0f;
 
     public Rigidbody2D Rigid2D => rigid2D;
+    public bool IsGrounded { get { return Physics2D.OverlapCapsule(rigid2D.position + coll2D.offset, coll2D.size, CapsuleDirection2D.Vertical, 0.0f, LayerMask.GetMask("Ground"));  } }
 
     private void Awake()
     {
         rigid2D = GetComponent<Rigidbody2D>();
+        coll2D = GetComponent<CapsuleCollider2D>();
     }
 
     public enum Direction
@@ -30,4 +33,5 @@ public class PlayerMovement : MonoBehaviour
     {
         rigid2D.AddForce(Vector2.up * tempJumpPower, ForceMode2D.Impulse);
     }
+
 }
