@@ -8,12 +8,12 @@ namespace State
     {
         public override void Enter(PlayerController entity)
         {
-            entity.Anim.SetBool("IsFalling", true);
+            entity.SpriteManager.Anim.SetBool("IsFalling", true);
         }
 
         public override void Exit(PlayerController entity)
         {
-            entity.Anim.SetBool("IsFalling", false);
+            entity.SpriteManager.Anim.SetBool("IsFalling", false);
         }
 
         public override void Operation_FixedUpdate(PlayerController entity)

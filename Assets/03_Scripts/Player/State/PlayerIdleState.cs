@@ -9,8 +9,7 @@ namespace State
     {
         public override void Enter(PlayerController entity)
         {
-            // idle animation true
-            entity.Movement.MoveHorizontal(0.0f);
+            entity.CommandInvoker.Execute(Command.PlayerCommandInvoker.Commands.MoveStop);
         }
 
         public override void Exit(PlayerController entity)
@@ -31,7 +30,6 @@ namespace State
             if (entity.InputGetter.IsMove)
             {
                 entity.StateMachine.ChangeState(PlayerStateMachine.PlayerStates.Move);
-                Debug.Log($"Is Move : {entity.InputGetter.IsMove}");
             }
         }
     }

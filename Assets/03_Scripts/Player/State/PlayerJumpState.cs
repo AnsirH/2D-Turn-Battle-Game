@@ -10,15 +10,13 @@ namespace State
         public override void Enter(PlayerController entity)
         {
             timer = 0.0f;
-            entity.Movement.Rigid2D.velocity = new Vector2(entity.Movement.Rigid2D.velocity.x, 0.0f);
-            entity.Movement.Jump();
-
-            entity.Anim.SetBool("IsJump", true);
+            entity.CommandInvoker.Execute(Command.PlayerCommandInvoker.Commands.Jump);
+            entity.SpriteManager.Anim.SetBool("IsJump", true);
         }
 
         public override void Exit(PlayerController entity)
         {
-            entity.Anim.SetBool("IsJump", false);
+            entity.SpriteManager.Anim.SetBool("IsJump", false);
         }
 
         public override void Operation_FixedUpdate(PlayerController entity)

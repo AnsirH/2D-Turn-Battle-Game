@@ -21,12 +21,14 @@ public class PlayerMovement : MonoBehaviour
     public enum Direction
     {
         Left = -1,
+        Stop = 0,
         Right = 1
     }
 
-    public void MoveHorizontal(float horizontalInput)
+    public void MoveHorizontal(Direction direction)
     {
-        rigid2D.velocity = new Vector2(horizontalInput * tempMoveSpeed, rigid2D.velocity.y);
+        rigid2D.velocity = new Vector2((int)direction * tempMoveSpeed, rigid2D.velocity.y);
+
     }
 
     public void Jump()
