@@ -2,19 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 namespace State
 {
-    public class PlayerIdleState : StateBase<PlayerController>
+    public class PlayerFallState : StateBase<PlayerController>
     {
         public override void Enter(PlayerController entity)
         {
-            entity.CommandInvoker.Execute(Command.PlayerCommandInvoker.Commands.MoveStop);
+            entity.SpriteManager.Anim.SetBool("IsFalling", true);
         }
 
         public override void Exit(PlayerController entity)
         {
-            // idle animation false
+            entity.SpriteManager.Anim.SetBool("IsFalling", false);
         }
 
         public override void Operation_FixedUpdate(PlayerController entity)
@@ -23,13 +22,9 @@ namespace State
 
         public override void Operation_Update(PlayerController entity)
         {
-            if (entity.InputGetter.IsJump)
+            if (entity.Movement.Rigid2D.velocity.y < 0.0f && entity.Movement.IsGrounded)
             {
-                entity.StateMachine.ChangeState(PlayerStateMachine.PlayerStates.Jump);
-            }
-            if (entity.InputGetter.IsMove)
-            {
-                entity.StateMachine.ChangeState(PlayerStateMachine.PlayerStates.Move);
+                entity.StateMachine.ChangeState(PlayerStateMachine.PlayerStates.Idle);
             }
         }
     }

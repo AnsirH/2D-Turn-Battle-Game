@@ -6,7 +6,7 @@ namespace State
 {
     public class PlayerStateMachine
     {
-        public enum PlayerStates { Idle = 0, Move, Jump }
+        public enum PlayerStates { Idle = 0, Move, Jump, Fall }
 
         private PlayerController playerController;
         private StateBase<PlayerController>[] states;
@@ -16,10 +16,11 @@ namespace State
         {
             this.playerController = playerController;
 
-            states = new StateBase<PlayerController>[3];
+            states = new StateBase<PlayerController>[4];
             states[(int)PlayerStates.Idle] = new PlayerIdleState();
             states[(int)PlayerStates.Move] = new PlayerMoveState();
             states[(int)PlayerStates.Jump] = new PlayerJumpState();
+            states[(int)PlayerStates.Fall] = new PlayerFallState();
         }
 
         public void Updated()

@@ -1,47 +1,49 @@
+using Command;
 using State;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
+[RequireComponent(typeof(PlayerMovement),typeof(PlayerInputGetter))]
 public class PlayerController : MonoBehaviour
 {
-    private PlayerMovement movement;
-    private PlayerStateMachine stateMachine;
-    private PlayerInputGetter inputGetter;
+    //private PlayerMovement movement;
+    //private PlayerStateMachine stateMachine;
+    //private PlayerInputGetter inputGetter;
+    //private PlayerSpriteManager spriteManager;
+    //// 프로퍼티
+    //public PlayerMovement Movement => movement;
+    //public PlayerStateMachine StateMachine => stateMachine;
+    //public PlayerInputGetter InputGetter => inputGetter;
+    //public PlayerSpriteManager SpriteManager => spriteManager;
 
-    // 프로퍼티
-    public PlayerMovement Movement => movement;
-    public PlayerStateMachine StateMachine => stateMachine;
-    public PlayerInputGetter InputGetter => inputGetter;
+    public PlayerMovement Movement { get; private set; }
+    public PlayerInputGetter InputGetter { get; private set; }
+    public PlayerSpriteManager SpriteManager { get; private set; }
+
+    public PlayerStateMachine StateMachine { get; private set; }
+    public PlayerCommandInvoker CommandInvoker{ get; private set; }
 
     void Start()
     {
-        if (!TryGetComponent<PlayerMovement>(out movement))
-        {
-            movement = gameObject.AddComponent<PlayerMovement>();
-        }
+        Movement = GetComponent<PlayerMovement>();
+        InputGetter = GetComponent<PlayerInputGetter>();
+        SpriteManager = GetComponentInChildren<PlayerSpriteManager>();
 
-        if (!TryGetComponent<PlayerInputGetter>(out inputGetter))
-        {
-            inputGetter = gameObject.AddComponent<PlayerInputGetter>();
-        }
-        stateMachine = new PlayerStateMachine(this);
+        StateMachine = new PlayerStateMachine(this);
+        CommandInvoker = new PlayerCommandInvoker(this);
 
-        stateMachine.ChangeState(PlayerStateMachine.PlayerStates.Idle);
+        StateMachine.ChangeState(PlayerStateMachine.PlayerStates.Idle);
     }
 
     void Update()
     {
-        stateMachine.Updated();
-        if (inputGetter.IsJump)
-        {
-            Debug.Log("점프 중");
-
-        }
+        StateMachine.Updated();
     }
 
     private void FixedUpdate()
     {
-        stateMachine.FixedUpdated();
+        StateMachine.FixedUpdated();
     }
 }

@@ -271,6 +271,7 @@ GameObject:
   - component: {fileID: 546940166}
   - component: {fileID: 546940165}
   - component: {fileID: 546940164}
+  - component: {fileID: 546940167}
   m_Layer: 0
   m_Name: Player Character
   m_TagString: Untagged
@@ -366,6 +367,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1850917743}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &546940167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546940163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5efc4da2f1acd094e84374d5b5c01655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &892376112
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,7 +477,7 @@ GameObject:
   - component: {fileID: 959467733}
   - component: {fileID: 959467735}
   - component: {fileID: 959467734}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2078,6 +2091,8 @@ GameObject:
   - component: {fileID: 1850917744}
   - component: {fileID: 1850917747}
   - component: {fileID: 1850917746}
+  - component: {fileID: 1850917748}
+  - component: {fileID: 1850917749}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2188,7 +2203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: be8701da6d8370540a5d0ebcb56d2a45, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -2201,7 +2216,19 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1850917748}
+        m_TargetAssemblyTypeName: PlayerInputGetter, Assembly-CSharp
+        m_MethodName: Move
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 8982581e-ff14-4430-8d0a-00c2090b80df
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
@@ -2209,7 +2236,19 @@ MonoBehaviour:
     m_ActionId: 9c4247a9-b684-4981-a45d-2ef4b3298abf
     m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1850917748}
+        m_TargetAssemblyTypeName: PlayerInputGetter, Assembly-CSharp
+        m_MethodName: Jump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: ee0dbae7-bc66-4094-8d69-ffd22bf9e702
     m_ActionName: Player/Jump[/Keyboard/space]
   - m_PersistentCalls:
@@ -2257,6 +2296,32 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1850917748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850917740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 384fd62227a6f3c45bcbbbaf766cae63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1850917749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850917740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dfbcf17e565096419e9012d62af7261, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tempMoveSpeed: 5
+  tempJumpPower: 6
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

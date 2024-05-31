@@ -6,20 +6,17 @@ namespace State
 {
     public class PlayerJumpState : StateBase<PlayerController>
     {
+        private float timer = 0.0f;
         public override void Enter(PlayerController entity)
         {
-            entity.Movement.Rigid2D.velocity = new Vector2(entity.Movement.Rigid2D.velocity.x, 0.0f);
-            entity.Movement.Jump();
-            entity.InputGetter.DisableJump();
-            if (entity.InputGetter.IsMove) { entity.StateMachine.ChangeState(PlayerStateMachine.PlayerStates.Move); }
-            else { entity.StateMachine.ChangeState(PlayerStateMachine.PlayerStates.Idle); }
-            // jump animation true
+            timer = 0.0f;
+            entity.CommandInvoker.Execute(Command.PlayerCommandInvoker.Commands.Jump);
+            entity.SpriteManager.Anim.SetBool("IsJump", true);
         }
 
         public override void Exit(PlayerController entity)
         {
-
-            // jump animation false
+            entity.SpriteManager.Anim.SetBool("IsJump", false);
         }
 
         public override void Operation_FixedUpdate(PlayerController entity)
@@ -29,6 +26,21 @@ namespace State
 
         public override void Operation_Update(PlayerController entity)
         {
+            if (timer > 1.0f)
+            {
+                entity.StateMachine.ChangeState(PlayerStateMachine.PlayerStates.Fall);
+                entity.InputGetter.DisableJump();
+            }
+            else
+            {
+                timer += Time.deltaTime;
+
+                if (!entity.InputGetter.IsJump)
+                {
+                    entity.Movement.Rigid2D.velocity = new Vector2(entity.Movement.Rigid2D.velocity.x, entity.Movement.Rigid2D.velocity.y * 0.5f);
+                    entity.StateMachine.ChangeState(PlayerStateMachine.PlayerStates.Fall);
+                }
+            }
         }
     }
 }

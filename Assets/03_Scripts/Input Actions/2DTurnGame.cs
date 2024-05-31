@@ -247,7 +247,7 @@ public partial class @_2DTurnGame: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""bc5b6e0b-89f4-4db2-8e52-ee8167094434"",
                     ""path"": ""<Keyboard>/space"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Jump"",
