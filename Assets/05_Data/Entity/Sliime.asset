@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8addeef791e1c1448f2fce66d5a2385, type: 3}
+  m_Name: Sliime
+  m_EditorClassIdentifier: 
+  entityName: "\uD30C\uB780\uC2AC\uB77C\uC784"
+  hp: 10
+  attack: 3
+  defense: 2
+  speed: 5
+  characterSprite: {fileID: 2135231170, guid: d05148d8645acb04d825a779ac3104e2, type: 3}
+  animController: {fileID: 9100000, guid: f64630ab3b8cc9b46aec602487616a5c, type: 2}

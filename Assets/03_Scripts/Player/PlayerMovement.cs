@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D Rigid2D => rigid2D;
     public bool IsGrounded { get { return Physics2D.OverlapCapsule(rigid2D.position + coll2D.offset, coll2D.size, CapsuleDirection2D.Vertical, 0.0f, LayerMask.GetMask("Ground"));  } }
 
+    public bool IsEncounterEnter { get; private set; } = false;
+
     private void Awake()
     {
         rigid2D = GetComponent<Rigidbody2D>();
@@ -36,4 +38,20 @@ public class PlayerMovement : MonoBehaviour
         rigid2D.AddForce(Vector2.up * tempJumpPower, ForceMode2D.Impulse);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("BattleEncounter"))
+        {
+            collision.GetComponent<Animator>().SetTrigger("Enter");
+            IsEncounterEnter = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("BattleEncounter"))
+        {
+            IsEncounterEnter = false;
+        }
+    }
 }
