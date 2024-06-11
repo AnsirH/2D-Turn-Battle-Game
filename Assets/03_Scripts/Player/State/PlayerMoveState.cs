@@ -6,6 +6,7 @@ namespace State
 {
     public class PlayerMoveState : StateBase<PlayerController>
     {
+        float encounterCheckTimer = 0;
         public override void Enter(PlayerController entity)
         {
             entity.SpriteManager.Anim.SetBool("IsMove", true);
@@ -25,6 +26,17 @@ namespace State
             else if (entity.InputGetter.MoveInput.x < 0)
             {
                 entity.CommandInvoker.Execute(Command.PlayerCommandInvoker.Commands.MoveLeft);
+            }
+
+            if (entity.Movement.IsEncounterEnter)
+            {
+                if (encounterCheckTimer >= 1.0f /* 맵의 고유 출현 검사 거리 값 넣기 */)
+                {
+                    BattleSystem.Instance.CheckEncounter();
+
+                    encounterCheckTimer = 0.0f;
+                }
+                encounterCheckTimer += Time.fixedDeltaTime;
             }
         }
 
