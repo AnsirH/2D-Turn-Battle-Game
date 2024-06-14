@@ -7,6 +7,10 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMovement),typeof(PlayerInputGetter))]
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private Entity playerEntity;
+
+    public Entity PlayerEntity => playerEntity;
+
     public PlayerMovement Movement { get; private set; }
     public PlayerInputGetter InputGetter { get; private set; }
     public PlayerSpriteManager SpriteManager { get; private set; }

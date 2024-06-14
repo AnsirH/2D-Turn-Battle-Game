@@ -22,8 +22,16 @@ public class Entity : ScriptableObject
     private int speed;
 
     [SerializeField]
-    Sprite characterSprite;
+    private Sprite characterSprite;
 
     [SerializeField]
-    AnimatorController animController;
+    private AnimatorController animController;
+
+    public string EntityName => entityName;
+    public int Hp => hp;
+    public int Attack => attack;
+    public int Defense => defense;
+    public int Speed => speed;
+    public Sprite CharacterSprite => characterSprite;
+    public AnimatorController AnimController => animController;
 }

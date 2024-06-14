@@ -13,7 +13,6 @@ namespace Command
         public override void Execute()
         {
             playerMovement.MoveHorizontal(PlayerMovement.Direction.Left);
-            Debug.Log("MoveLeft");
         }
     }
 }

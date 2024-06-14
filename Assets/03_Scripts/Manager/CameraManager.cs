@@ -31,17 +31,4 @@ public class CameraManager : Singleton<CameraManager>
                 break;
         }
     }
-
-    private void OnGUI()
-    {
-        if (GUI.Button(new Rect(20, 40, 100, 20), "PlayerFollow Cam"))
-        {
-            ChangeCam(CamType.PlayerFollow);
-        }
-
-        if (GUI.Button(new Rect(20, 70, 100, 20), "Battle Cam"))
-        {
-            ChangeCam(CamType.Battle);
-        }
-    }
 }

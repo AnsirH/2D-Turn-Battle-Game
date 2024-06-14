@@ -23,6 +23,10 @@ public class Map : ScriptableObject
     [SerializeField]
     private int minEnemyLevel;
 
-    // 배틀 필드 배열 추가할 것.
-    // 배틀 필드란 배틀을 하는 공간을 말하며, 배틀 카메라와 플레이어, 적의 위치를 포함한다.
+    public string MapName => mapName;
+    public float EncounterPercent => encounterPercent;
+    public float DistanceForEncounter => distanceForEncounter;
+    public Entity[] Enemies => enemies;
+    public int MaxEnemyLevel => maxEnemyLevel;
+    public int MinEnemyLevel => minEnemyLevel;
 }
